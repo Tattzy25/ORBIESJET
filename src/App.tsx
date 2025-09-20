@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import "./styles/blur-overlay.css";
 
 export default function App() {
-  const [canvasSize, setCanvasSize] = useState(600);
+  const [canvasSize, setCanvasSize] = useState(250);
   const [selectedShader, setSelectedShader] = useState(1); // Default to the first shader
 
   // Set dark mode
@@ -13,11 +13,21 @@ export default function App() {
     document.documentElement.classList.add("dark");
   }, []);
 
-  // Adjust canvas size based on window size
+  // Adjust canvas size based on window size for 2x2 grid
   useEffect(() => {
     const handleResize = () => {
-      const size =
-        Math.min(window.innerWidth, window.innerHeight) * 0.7;
+      // Calculate size to fit 2x2 grid with spacing
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      // Account for padding and gaps (40px padding + 32px gap)
+      const availableWidth = (viewportWidth - 80 - 32) / 2;
+      const availableHeight = (viewportHeight - 80 - 32) / 2;
+      
+      // Use smaller dimension and cap at reasonable sizes
+      const maxSize = Math.min(availableWidth, availableHeight);
+      const size = Math.max(180, Math.min(maxSize, 300)); // Min 180px, max 300px
+      
       setCanvasSize(size);
     };
 
@@ -44,37 +54,92 @@ export default function App() {
     }
   }, []);
 
+  // Helper function to get blur overlay size class
+  const getBlurOverlayClass = () => {
+    if (canvasSize <= 180) return "blur-overlay blur-overlay--small";
+    if (canvasSize <= 250) return "blur-overlay blur-overlay--medium";
+    return "blur-overlay blur-overlay--large";
+  };
+
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative">
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Shader Selector - Now positioned fixed on the right */}
       <ShaderSelector
         selectedShader={selectedShader}
         onSelectShader={handleSelectShader}
       />
 
-      {/* Main layout container with shader */}
-      <div className="relative flex flex-col items-center justify-center">
-        {/* Shader Circle */}
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative"
-        >
-          <ShaderCanvas
-            size={canvasSize}
-            shaderId={selectedShader}
-          />
-          
-          {/* Centered Blur Overlay */}
-          <div 
-            className="blur-overlay"
-            style={{
-              width: `${canvasSize * 0.6}px`,
-              height: `${canvasSize * 0.6}px`,
-            }}
-          />
-        </motion.div>
+      {/* 2x2 Grid Layout for Shaders */}
+      <div className="flex flex-col items-center justify-center gap-4 sm:gap-8 w-full max-w-4xl">
+        {/* Top Row - 2 Shaders */}
+        <div className="flex flex-row justify-center gap-4 sm:gap-8 w-full">
+          {/* Shader 1 */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative flex-shrink-0"
+          >
+            <ShaderCanvas
+              size={canvasSize}
+              shaderId={1}
+            />
+            
+            {/* Centered Blur Overlay for Shader 1 */}
+            <div className={getBlurOverlayClass()} />
+          </motion.div>
+
+          {/* Shader 2 */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative flex-shrink-0"
+          >
+            <ShaderCanvas
+              size={canvasSize}
+              shaderId={2}
+            />
+            
+            {/* Centered Blur Overlay for Shader 2 */}
+            <div className={getBlurOverlayClass()} />
+          </motion.div>
+        </div>
+
+        {/* Bottom Row - 2 Shaders */}
+        <div className="flex flex-row justify-center gap-4 sm:gap-8 w-full">
+          {/* Shader 3 */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="relative flex-shrink-0"
+          >
+            <ShaderCanvas
+              size={canvasSize}
+              shaderId={3}
+            />
+            
+            {/* Centered Blur Overlay for Shader 3 */}
+            <div className={getBlurOverlayClass()} />
+          </motion.div>
+
+          {/* Shader 4 */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="relative flex-shrink-0"
+          >
+            <ShaderCanvas
+              size={canvasSize}
+              shaderId={4}
+            />
+            
+            {/* Centered Blur Overlay for Shader 4 */}
+            <div className={getBlurOverlayClass()} />
+          </motion.div>
+        </div>
       </div>
     </div>
   );

@@ -23,3 +23,37 @@
     0 12px 40px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
+
+/* Size variants for different canvas sizes */
+.blur-overlay--small {
+  width: 120px; /* ~67% of 180px */
+  height: 120px;
+}
+
+.blur-overlay--medium {
+  width: 165px; /* ~66% of 250px */
+  height: 165px;
+}
+
+.blur-overlay--large {
+  width: 198px; /* ~66% of 300px */
+  height: 198px;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 640px) {
+  .blur-overlay--small {
+    width: 100px; /* Slightly smaller for mobile */
+    height: 100px;
+  }
+  
+  .blur-overlay--medium {
+    width: 132px;
+    height: 132px;
+  }
+  
+  .blur-overlay--large {
+    width: 165px;
+    height: 165px;
+  }
+}
