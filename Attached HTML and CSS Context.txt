@@ -1,0 +1,628 @@
+Attached HTML and CSS Context
+
+<div class="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative"><div class="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-3 z-10"><div class="opacity-100"><button class="w-10 h-10 rounded-full cursor-pointer border-2 overflow-hidden relative" aria-label="Select Flowing Waves shader" style="border-color: rgba(255, 255, 255, 0.3); opacity: 1; transform: none; box-shadow: transparent 0px 0px 0px;"><canvas class="absolute inset-0 rounded-full" width="40" height="40" style="width: 100%; height: 100%;"></canvas></button></div><div class="opacity-100"><button class="w-10 h-10 rounded-full cursor-pointer border-2 overflow-hidden relative" aria-label="Select Ether shader" style="border-color: rgba(255, 255, 255, 0.3); opacity: 1; transform: none; box-shadow: transparent 0px 0px 0px;"><canvas class="absolute inset-0 rounded-full" width="40" height="40" style="width: 100%; height: 100%;"></canvas></button></div><div class="opacity-100"><button class="w-10 h-10 rounded-full cursor-pointer border-2 overflow-hidden relative" aria-label="Select Shooting Stars shader" style="border-color: rgba(255, 255, 255, 0.3); opacity: 1; transform: none; box-shadow: transparent 0px 0px 0px;"><canvas class="absolute inset-0 rounded-full" width="40" height="40" style="width: 100%; height: 100%;"></canvas></button></div><div class="opacity-100"><button class="w-10 h-10 rounded-full cursor-pointer border-2 overflow-hidden relative" aria-label="Select Wavy Lines shader" style="border-color: white; opacity: 1; transform: scale(1.1); box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px;"><canvas class="absolute inset-0 rounded-full" width="40" height="40" style="width: 100%; height: 100%;"></canvas></button></div></div><div class="relative flex flex-col items-center justify-center"><div class="relative" style="opacity: 1; transform: none;"><canvas class="rounded-full transition-transform duration-300" width="200" height="200" style="width: 200.2px; height: 200.2px; transform: scale(1); cursor: default; box-shadow: none;"></canvas></div></div></div>
+
+
+/* Matched Rule from user-agent */
+div {
+  display: block;
+}
+
+/* Matched Rule from user-agent */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Matched Rule from regular */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Matched Rule from regular */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Matched Rule from regular */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Matched Rule from regular */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Matched Rule from regular */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Matched Rule from regular */
+body, p, span, div {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+/* Matched Rule from regular */
+.relative {
+  position: relative;
+  position: relative;
+}
+
+/* Matched Rule from regular */
+.flex {
+  display: flex;
+  display: flex;
+}
+
+/* Matched Rule from regular */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100vh;
+}
+
+/* Matched Rule from regular */
+.flex-col {
+  flex-direction: column;
+  flex-direction: column;
+}
+
+/* Matched Rule from regular */
+.items-center {
+  align-items: center;
+  align-items: center;
+}
+
+/* Matched Rule from regular */
+.justify-center {
+  justify-content: center;
+  justify-content: center;
+}
+
+/* Matched Rule from regular */
+.bg-black {
+  background-color: var(--color-black);
+  background-color: var(--color-black);
+}
+
+/* Matched Rule from regular */
+.p-4 {
+  padding: calc(var(--spacing) * 4);
+}
+
+/* Inherited from ancestor level 1 (user-agent) */
+div {
+  display: block;
+}
+
+/* Inherited from ancestor level 1 (user-agent) */
+address, blockquote, center, div, figure, figcaption, footer, form, header, hr, legend, listing, main, p, plaintext, pre, summary, xmp, article, aside, h1, h2, h3, h4, h5, h6, hgroup, nav, section, search, table, caption, colgroup, col, thead, tbody, tfoot, tr, td, th, dir, dd, dl, dt, menu, ol, ul, li, bdi, output, [dir="ltr" i], [dir="rtl" i], [dir="auto" i] {
+  unicode-bidi: isolate;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 1 (regular) */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Inherited from ancestor level 1 (regular) */
+body, p, span, div {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+/* Inherited from ancestor level 2 (user-agent) */
+body {
+  display: block;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+body {
+  line-height: inherit;
+  line-height: inherit;
+}
+
+/* Inherited from ancestor level 2 (regular) */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Inherited from ancestor level 2 (regular) */
+body, p, span, div {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+}
+
+/* Inherited from ancestor level 3 (user-agent) */
+html {
+  display: block;
+}
+
+/* Inherited from ancestor level 3 (user-agent) */
+:root {
+  view-transition-name: root;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+:root, :host {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: .25rem;
+  --container-sm: 24rem;
+  --text-xs: .75rem;
+  --text-xs--line-height: calc(1 / .75);
+  --text-sm: .875rem;
+  --text-sm--line-height: calc(1.25 / .875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --tracking-wide: .025em;
+  --radius-xs: .125rem;
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+  --blur-sm: 8px;
+  --blur-lg: 16px;
+  --default-transition-duration: .15s;
+  --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  --default-font-family: var(--font-sans);
+  --default-font-feature-settings: var(--font-sans--font-feature-settings);
+  --default-font-variation-settings: var(--font-sans--font-variation-settings);
+  --default-mono-font-family: var(--font-mono);
+  --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);
+  --default-mono-font-variation-settings: var(--font-mono--font-variation-settings);
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-black: #000;
+  --color-white: #fff;
+  --spacing: .25rem;
+  --container-sm: 24rem;
+  --text-xs: .75rem;
+  --text-xs--line-height: calc(1 / .75);
+  --text-sm: .875rem;
+  --text-sm--line-height: calc(1.25 / .875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --tracking-wide: .025em;
+  --radius-xs: .125rem;
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+  --blur-sm: 8px;
+  --blur-lg: 16px;
+  --default-transition-duration: .15s;
+  --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  --default-font-family: var(--font-sans);
+  --default-font-feature-settings: var(--font-sans--font-feature-settings);
+  --default-font-variation-settings: var(--font-sans--font-variation-settings);
+  --default-mono-font-family: var(--font-mono);
+  --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);
+  --default-mono-font-variation-settings: var(--font-mono--font-variation-settings);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+*, :after, :before, ::backdrop {
+  box-sizing: border-box;
+  border: 0 solid;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-bottom-color: initial;
+  border-left-color: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-color: var(--ring);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+* {
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+html, :host {
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  line-height: 1.5;
+  font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+  font-feature-settings: var(--default-font-feature-settings, normal);
+  font-variation-settings: var(--default-font-variation-settings, normal);
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+  tab-size: 4;
+  line-height: 1.5;
+  font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+  font-feature-settings: var(--default-font-feature-settings, normal);
+  font-variation-settings: var(--default-font-variation-settings, normal);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Inherited from ancestor level 3 (regular) */
+html {
+  font-size: var(--font-size);
+  font-size: var(--font-size);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+:root {
+  --font-size: 14px;
+  --font-heading: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+  --background: #fff;
+  --foreground: oklch(.145 0 0);
+  --card: #fff;
+  --card-foreground: oklch(.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(.95 .0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #fff;
+  --border: #0000001a;
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(.708 0 0);
+  --chart-1: oklch(.646 .222 41.116);
+  --chart-2: oklch(.6 .118 184.704);
+  --chart-3: oklch(.398 .07 227.392);
+  --chart-4: oklch(.828 .189 84.429);
+  --chart-5: oklch(.769 .188 70.08);
+  --radius: .625rem;
+  --sidebar: oklch(.985 0 0);
+  --sidebar-foreground: oklch(.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(.985 0 0);
+  --sidebar-accent: oklch(.97 0 0);
+  --sidebar-accent-foreground: oklch(.205 0 0);
+  --sidebar-border: oklch(.922 0 0);
+  --sidebar-ring: oklch(.708 0 0);
+  --font-size: 14px;
+  --font-heading: "Instrument Serif", serif;
+  --font-body: "Inter", sans-serif;
+  --background: #fff;
+  --foreground: oklch(.145 0 0);
+  --card: #fff;
+  --card-foreground: oklch(.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(.95 .0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #fff;
+  --border: #0000001a;
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(.708 0 0);
+  --chart-1: oklch(.646 .222 41.116);
+  --chart-2: oklch(.6 .118 184.704);
+  --chart-3: oklch(.398 .07 227.392);
+  --chart-4: oklch(.828 .189 84.429);
+  --chart-5: oklch(.769 .188 70.08);
+  --radius: .625rem;
+  --sidebar: oklch(.985 0 0);
+  --sidebar-foreground: oklch(.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(.985 0 0);
+  --sidebar-accent: oklch(.97 0 0);
+  --sidebar-accent-foreground: oklch(.205 0 0);
+  --sidebar-border: oklch(.922 0 0);
+  --sidebar-ring: oklch(.708 0 0);
+}
+
+/* Inherited from ancestor level 3 (regular) */
+.dark {
+  --background: oklch(.145 0 0);
+  --foreground: oklch(.985 0 0);
+  --card: oklch(.145 0 0);
+  --card-foreground: oklch(.985 0 0);
+  --popover: oklch(.145 0 0);
+  --popover-foreground: oklch(.985 0 0);
+  --primary: oklch(.985 0 0);
+  --primary-foreground: oklch(.205 0 0);
+  --secondary: oklch(.269 0 0);
+  --secondary-foreground: oklch(.985 0 0);
+  --muted: oklch(.269 0 0);
+  --muted-foreground: oklch(.708 0 0);
+  --accent: oklch(.269 0 0);
+  --accent-foreground: oklch(.985 0 0);
+  --destructive: oklch(.396 .141 25.723);
+  --destructive-foreground: oklch(.637 .237 25.331);
+  --border: oklch(.269 0 0);
+  --input: oklch(.269 0 0);
+  --ring: oklch(.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(.488 .243 264.376);
+  --chart-2: oklch(.696 .17 162.48);
+  --chart-3: oklch(.769 .188 70.08);
+  --chart-4: oklch(.627 .265 303.9);
+  --chart-5: oklch(.645 .246 16.439);
+  --sidebar: oklch(.205 0 0);
+  --sidebar-foreground: oklch(.985 0 0);
+  --sidebar-primary: oklch(.488 .243 264.376);
+  --sidebar-primary-foreground: oklch(.985 0 0);
+  --sidebar-accent: oklch(.269 0 0);
+  --sidebar-accent-foreground: oklch(.985 0 0);
+  --sidebar-border: oklch(.269 0 0);
+  --sidebar-ring: oklch(.439 0 0);
+  --background: oklch(.145 0 0);
+  --foreground: oklch(.985 0 0);
+  --card: oklch(.145 0 0);
+  --card-foreground: oklch(.985 0 0);
+  --popover: oklch(.145 0 0);
+  --popover-foreground: oklch(.985 0 0);
+  --primary: oklch(.985 0 0);
+  --primary-foreground: oklch(.205 0 0);
+  --secondary: oklch(.269 0 0);
+  --secondary-foreground: oklch(.985 0 0);
+  --muted: oklch(.269 0 0);
+  --muted-foreground: oklch(.708 0 0);
+  --accent: oklch(.269 0 0);
+  --accent-foreground: oklch(.985 0 0);
+  --destructive: oklch(.396 .141 25.723);
+  --destructive-foreground: oklch(.637 .237 25.331);
+  --border: oklch(.269 0 0);
+  --input: oklch(.269 0 0);
+  --ring: oklch(.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(.488 .243 264.376);
+  --chart-2: oklch(.696 .17 162.48);
+  --chart-3: oklch(.769 .188 70.08);
+  --chart-4: oklch(.627 .265 303.9);
+  --chart-5: oklch(.645 .246 16.439);
+  --sidebar: oklch(.205 0 0);
+  --sidebar-foreground: oklch(.985 0 0);
+  --sidebar-primary: oklch(.488 .243 264.376);
+  --sidebar-primary-foreground: oklch(.985 0 0);
+  --sidebar-accent: oklch(.269 0 0);
+  --sidebar-accent-foreground: oklch(.985 0 0);
+  --sidebar-border: oklch(.269 0 0);
+  --sidebar-ring: oklch(.439 0 0);
+}

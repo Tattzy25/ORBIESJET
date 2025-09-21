@@ -40,6 +40,16 @@
   height: 198px;
 }
 
+.blur-overlay--xlarge {
+  width: 264px; /* ~66% of 400px */
+  height: 264px;
+}
+
+.blur-overlay--xxlarge {
+  width: 330px; /* ~66% of 500px */
+  height: 330px;
+}
+
 /* Responsive adjustments for mobile */
 @media (max-width: 640px) {
   .blur-overlay--small {
@@ -55,5 +65,15 @@
   .blur-overlay--large {
     width: 165px;
     height: 165px;
+  }
+  
+  .blur-overlay--xlarge {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .blur-overlay--xxlarge {
+    width: 230px;
+    height: 230px;
   }
 }

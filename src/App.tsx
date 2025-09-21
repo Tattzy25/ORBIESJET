@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import { ShaderCanvas } from "./components/ShaderCanvas";
 import { ShaderSelector } from "./components/ShaderSelector";
+import { BlurOverlay } from "./components/BlurOverlay";
+import { FuturisticRadioPlayer } from "./components/FuturisticRadioPlayer";
 import { motion } from "framer-motion";
 import "./styles/blur-overlay.css";
 
 export default function App() {
   const [canvasSize, setCanvasSize] = useState(250);
   const [selectedShader, setSelectedShader] = useState(1); // Default to the first shader
+
+  // Check if we're in embed mode with specific shader
+  const urlParams = new URLSearchParams(window.location.search);
+  const embedShader = urlParams.get('shader') || (window as any).EMBED_SHADER;
+  const isEmbedMode = embedShader !== null;
 
   // Set dark mode
   useEffect(() => {
@@ -48,18 +55,47 @@ export default function App() {
 
   // Load shader preference from localStorage on initial load
   useEffect(() => {
-    const savedShader = localStorage.getItem("selectedShader");
-    if (savedShader) {
-      setSelectedShader(parseInt(savedShader, 10));
+    if (isEmbedMode && embedShader) {
+      setSelectedShader(parseInt(embedShader, 10));
+    } else {
+      const savedShader = localStorage.getItem("selectedShader");
+      if (savedShader) {
+        setSelectedShader(parseInt(savedShader, 10));
+      }
     }
-  }, []);
+  }, [isEmbedMode, embedShader]);
 
-  // Helper function to get blur overlay size class
-  const getBlurOverlayClass = () => {
-    if (canvasSize <= 180) return "blur-overlay blur-overlay--small";
-    if (canvasSize <= 250) return "blur-overlay blur-overlay--medium";
-    return "blur-overlay blur-overlay--large";
-  };
+  // If in embed mode, show only the requested shader
+  if (isEmbedMode && embedShader) {
+    const shaderSize = Math.min(window.innerWidth - 40, window.innerHeight - 40, 400);
+    return (
+      <div className="min-h-screen bg-transparent flex items-center justify-center p-4">
+        <div className="relative">
+          <ShaderCanvas
+            size={shaderSize}
+            shaderId={parseInt(embedShader, 10)}
+          />
+          <div 
+            className="blur-overlay"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: `${shaderSize * 0.6}px`,
+              height: `${shaderSize * 0.6}px`,
+              borderRadius: '50%',
+              backdropFilter: 'blur(12px)',
+              background: 'rgba(255, 255, 255, 0.05)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              pointerEvents: 'none',
+              transition: 'all 0.3s ease',
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
@@ -70,7 +106,7 @@ export default function App() {
       />
 
       {/* 2x2 Grid Layout for Shaders */}
-      <div className="flex flex-col items-center justify-center gap-4 sm:gap-8 w-full max-w-4xl">
+      <div className="flex flex-col items-center justify-center gap-4 sm:gap-20 w-full max-w-4xl">
         {/* Top Row - 2 Shaders */}
         <div className="flex flex-row justify-center gap-4 sm:gap-8 w-full">
           {/* Shader 1 */}
@@ -85,8 +121,8 @@ export default function App() {
               shaderId={1}
             />
             
-            {/* Centered Blur Overlay for Shader 1 */}
-            <div className={getBlurOverlayClass()} />
+            {/* Futuristic Radio Player for Shader 1 */}
+            <FuturisticRadioPlayer canvasSize={canvasSize} />
           </motion.div>
 
           {/* Shader 2 */}
@@ -102,7 +138,7 @@ export default function App() {
             />
             
             {/* Centered Blur Overlay for Shader 2 */}
-            <div className={getBlurOverlayClass()} />
+            <BlurOverlay canvasSize={canvasSize} />
           </motion.div>
         </div>
 
@@ -121,7 +157,7 @@ export default function App() {
             />
             
             {/* Centered Blur Overlay for Shader 3 */}
-            <div className={getBlurOverlayClass()} />
+            <BlurOverlay canvasSize={canvasSize} />
           </motion.div>
 
           {/* Shader 4 */}
@@ -137,7 +173,7 @@ export default function App() {
             />
             
             {/* Centered Blur Overlay for Shader 4 */}
-            <div className={getBlurOverlayClass()} />
+            <BlurOverlay canvasSize={canvasSize} />
           </motion.div>
         </div>
       </div>

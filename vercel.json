@@ -1,0 +1,9 @@
+{
+  "alias": ["orbiejet-tattzy.vercel.app"],
+  "rewrites": [
+    {
+      "source": "/((?!api|_next/static|_next/image|favicon.ico|shader[0-9]\\.html|assets).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
