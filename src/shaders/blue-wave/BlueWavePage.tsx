@@ -3,7 +3,6 @@ import { ShaderCanvas } from "../../components/ShaderCanvas";
 import { BWEmbed } from "../../components/BWEmbed";
 import { BlueWaveRadio } from "./BlueWaveRadio";
 import { motion } from "framer-motion";
-import "../../styles/blur-overlay.css";
 
 export default function BlueWavePage() {
   const [canvasSize, setCanvasSize] = useState(250);

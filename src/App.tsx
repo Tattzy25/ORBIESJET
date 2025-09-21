@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { ShaderCanvas } from "./components/ShaderCanvas";
 import { ShaderSelector } from "./components/ShaderSelector";
-import { BlurOverlay } from "./components/BlurOverlay";
 import { BlueWaveRadio } from "./shaders/blue-wave/BlueWaveRadio";
 import { motion } from "framer-motion";
-import "./styles/blur-overlay.css";
 
 export default function App() {
   const [canvasSize, setCanvasSize] = useState(250);
@@ -136,9 +134,6 @@ export default function App() {
               size={canvasSize}
               shaderId={2}
             />
-            
-            {/* Centered Blur Overlay for Shader 2 */}
-            <BlurOverlay canvasSize={canvasSize} />
           </motion.div>
         </div>
 
@@ -155,9 +150,6 @@ export default function App() {
               size={canvasSize}
               shaderId={3}
             />
-            
-            {/* Centered Blur Overlay for Shader 3 */}
-            <BlurOverlay canvasSize={canvasSize} />
           </motion.div>
 
           {/* Shader 4 */}
@@ -171,9 +163,6 @@ export default function App() {
               size={canvasSize}
               shaderId={4}
             />
-            
-            {/* Centered Blur Overlay for Shader 4 */}
-            <BlurOverlay canvasSize={canvasSize} />
           </motion.div>
         </div>
       </div>

@@ -3,7 +3,6 @@ import { ShaderCanvas } from "./ShaderCanvas";
 import { ShaderSelector } from "./ShaderSelector";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import "../styles/blur-overlay.css";
 
 export default function GridPage() {
   const [canvasSize, setCanvasSize] = useState(250);
@@ -55,13 +54,6 @@ export default function GridPage() {
     }
   }, []);
 
-  // Helper function to get blur overlay size class
-  const getBlurOverlayClass = () => {
-    if (canvasSize <= 180) return "blur-overlay blur-overlay--small";
-    if (canvasSize <= 250) return "blur-overlay blur-overlay--medium";
-    return "blur-overlay blur-overlay--large";
-  };
-
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Shader Selector - Now positioned fixed on the right */}
@@ -86,9 +78,6 @@ export default function GridPage() {
                 size={canvasSize}
                 shaderId={1}
               />
-              
-              {/* Centered Blur Overlay for Blue Wave */}
-              <div className={getBlurOverlayClass()} />
             </motion.div>
           </Link>
 
@@ -104,9 +93,6 @@ export default function GridPage() {
                 size={canvasSize}
                 shaderId={2}
               />
-              
-              {/* Centered Blur Overlay for Shader 2 */}
-              <div className={getBlurOverlayClass()} />
             </motion.div>
           </Link>
         </div>
@@ -126,8 +112,6 @@ export default function GridPage() {
                 shaderId={3}
               />
               
-              {/* Centered Blur Overlay for Shader 3 */}
-              <div className={getBlurOverlayClass()} />
             </motion.div>
           </Link>
 
@@ -143,9 +127,6 @@ export default function GridPage() {
                 size={canvasSize}
                 shaderId={4}
               />
-              
-              {/* Centered Blur Overlay for Shader 4 */}
-              <div className={getBlurOverlayClass()} />
             </motion.div>
           </Link>
         </div>

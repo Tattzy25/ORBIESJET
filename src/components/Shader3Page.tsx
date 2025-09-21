@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { ShaderCanvas } from "./ShaderCanvas";
 // import { SingleShaderEmbedDisplay } from "./SingleShaderEmbedDisplay"; // TODO: Fix when working on Shader 3
-import { BlurOverlay } from "./BlurOverlay";
 import { motion } from "framer-motion";
-import "../styles/blur-overlay.css";
 
 export default function Shader3Page() {
   const [canvasSize, setCanvasSize] = useState(250);
@@ -48,9 +46,6 @@ export default function Shader3Page() {
           size={canvasSize}
           shaderId={3}
         />
-        
-        {/* Centered Blur Overlay for Shader 3 */}
-        <BlurOverlay canvasSize={canvasSize} />
       </motion.div>
 
     </div>

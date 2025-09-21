@@ -50,7 +50,7 @@ void mainImage(out vec4 O, in vec2 fragCoord) {
     }
   }
   
-  // Adjust colors based on reminder state - use consistent blue palette
+  // Apply blue color palette for consistent theming
   O.rgb = mix(O.rgb, vec3(0.2, 0.4, 1.0), 0.3);
   
   // Apply center dimming only if not disabled

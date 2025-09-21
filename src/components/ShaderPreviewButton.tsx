@@ -59,8 +59,6 @@ export const ShaderPreviewButton = ({
         iResolution: gl.getUniformLocation(shaderProgram, 'iResolution'),
         iTime: gl.getUniformLocation(shaderProgram, 'iTime'),
         iMouse: gl.getUniformLocation(shaderProgram, 'iMouse'),
-        hasActiveReminders: gl.getUniformLocation(shaderProgram, 'hasActiveReminders'),
-        hasUpcomingReminders: gl.getUniformLocation(shaderProgram, 'hasUpcomingReminders'),
         disableCenterDimming: gl.getUniformLocation(shaderProgram, 'disableCenterDimming'),
       },
     };
@@ -194,9 +192,6 @@ export const ShaderPreviewButton = ({
     gl.uniform1f(programInfo.uniformLocations.iTime, currentTime);
     gl.uniform2f(programInfo.uniformLocations.iMouse, 0.5, 0.5); // Fixed center for preview
     
-    // For preview buttons, we always use the default state
-    gl.uniform1i(programInfo.uniformLocations.hasActiveReminders, 0);
-    gl.uniform1i(programInfo.uniformLocations.hasUpcomingReminders, 0);
     // Disable center dimming for previews to show the full shader effect
     gl.uniform1i(programInfo.uniformLocations.disableCenterDimming, 1);
 

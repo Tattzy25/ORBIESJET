@@ -1,9 +1,7 @@
 
-  # Shader Reminder (Community)
+# Shader Visualizer
 
-  This is a code bundle for Shader Reminder (Community). The original project is available at https://www.figma.com/design/vVKfT4Lbs9HxFpRPlTAz7f/Shader-Reminder--Community-.
-
-  ## Running the code
+This is a WebGL shader visualization application featuring dynamic audio-reactive shaders and interactive effects.  ## Running the code
 
   Run `npm i` to install the dependencies.
 
