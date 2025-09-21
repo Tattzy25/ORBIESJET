@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ShaderCanvas } from "./components/ShaderCanvas";
 import { ShaderSelector } from "./components/ShaderSelector";
 import { BlurOverlay } from "./components/BlurOverlay";
-import { FuturisticRadioPlayer } from "./components/FuturisticRadioPlayer";
+import { BlueWaveRadio } from "./shaders/blue-wave/BlueWaveRadio";
 import { motion } from "framer-motion";
 import "./styles/blur-overlay.css";
 
@@ -109,7 +109,7 @@ export default function App() {
       <div className="flex flex-col items-center justify-center gap-4 sm:gap-20 w-full max-w-4xl">
         {/* Top Row - 2 Shaders */}
         <div className="flex flex-row justify-center gap-4 sm:gap-8 w-full">
-          {/* Shader 1 */}
+          {/* Blue Wave Shader */}
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -121,8 +121,8 @@ export default function App() {
               shaderId={1}
             />
             
-            {/* Futuristic Radio Player for Shader 1 */}
-            <FuturisticRadioPlayer canvasSize={canvasSize} />
+            {/* Blue Wave Radio Player */}
+            <BlueWaveRadio canvasSize={canvasSize} />
           </motion.div>
 
           {/* Shader 2 */}

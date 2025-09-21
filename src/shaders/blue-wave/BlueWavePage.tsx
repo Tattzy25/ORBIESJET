@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { ShaderCanvas } from "./ShaderCanvas";
-import { SingleShaderEmbedDisplay } from "./SingleShaderEmbedDisplay";
-import { FuturisticRadioPlayer } from "./FuturisticRadioPlayer";
+import { ShaderCanvas } from "../../components/ShaderCanvas";
+import { BWEmbed } from "../../components/BWEmbed";
+import { BlueWaveRadio } from "./BlueWaveRadio";
 import { motion } from "framer-motion";
-import "../styles/blur-overlay.css";
+import "../../styles/blur-overlay.css";
 
-export default function Shader1Page() {
+export default function BlueWavePage() {
   const [canvasSize, setCanvasSize] = useState(250);
 
   // Set dark mode
@@ -37,7 +37,7 @@ export default function Shader1Page() {
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Shader Display */}
+      {/* Blue Wave Shader Display */}
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -49,12 +49,12 @@ export default function Shader1Page() {
           shaderId={1}
         />
         
-        {/* Futuristic Radio Player for Shader 1 */}
-        <FuturisticRadioPlayer canvasSize={canvasSize} />
+        {/* Blue Wave Radio Player */}
+        <BlueWaveRadio canvasSize={canvasSize} />
       </motion.div>
 
       {/* Embed Code Display with huge padding */}
-      <SingleShaderEmbedDisplay shaderId={1} />
+      <BWEmbed shaderId={1} />
     </div>
   );
 }

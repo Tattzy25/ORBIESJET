@@ -4,34 +4,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Textarea } from "./ui/textarea";
 import { Copy, Check } from "lucide-react";
 
-interface SingleShaderEmbedDisplayProps {
+interface BWEmbedProps {
   shaderId: number;
 }
 
-export const SingleShaderEmbedDisplay = ({ shaderId }: SingleShaderEmbedDisplayProps) => {
+export const BWEmbed = ({ shaderId }: BWEmbedProps) => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const baseUrl = "https://orbiejet-tattzy.vercel.app";
+  // Main domain with localhost fallback for development
+  const baseUrl = "https://musarty.com";
+  // Fallback: const baseUrl = "http://localhost:5173";
   
   const embedCodes = [
     {
-      title: "Short Embed Code",
-      code: `<iframe src="${baseUrl}/shader${shaderId}.html" width="500" height="500" frameborder="0" style="background: transparent;"></iframe>`
-    },
-    {
       title: "Long Embed Code", 
       code: `<iframe 
-  src="${baseUrl}/shader${shaderId}.html" 
-  width="500" 
+  src="${baseUrl}/shader1.html" 
+  width="100%" 
   height="500" 
   frameborder="0" 
-  style="background: transparent; border-radius: 50%; box-shadow: 0 0 20px rgba(255,255,255,0.2);"
-  allowfullscreen>
+  style="background: transparent; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); max-width: 500px; min-height: 400px;"
+  allowfullscreen
+  loading="lazy">
 </iframe>`
     },
     {
-      title: "URL Embed Code",
-      code: `${baseUrl}/shader${shaderId}`
+      title: "Short Embed Code",
+      code: `<iframe src="${baseUrl}/shader1.html" width="100%" height="400" frameborder="0" style="background: transparent; max-width: 500px;" loading="lazy"></iframe>`
+    },
+    {
+      title: "URL Only",
+      code: `${baseUrl}/BW-Radio-Widget`
     }
   ];
 
@@ -46,7 +49,7 @@ export const SingleShaderEmbedDisplay = ({ shaderId }: SingleShaderEmbedDisplayP
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4" style={{ marginTop: '100px' }}>
+    <div className="w-full max-w-4xl mx-auto px-4 mt-[100px]">
       <h2 className="text-white text-2xl font-bold mb-8 text-center">Embed Code for Shader {shaderId}</h2>
       <div className="grid grid-cols-1 gap-6">
         {embedCodes.map((embed, index) => (
@@ -79,7 +82,7 @@ export const SingleShaderEmbedDisplay = ({ shaderId }: SingleShaderEmbedDisplayP
                 value={embed.code}
                 readOnly
                 className="bg-gray-800 border-gray-600 text-gray-200 font-mono text-sm resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                rows={embed.title === "Long Embed Code" ? 8 : embed.title === "URL Embed Code" ? 2 : 3}
+                rows={embed.title === "Long Embed Code" ? 8 : embed.title === "URL Only" ? 2 : 3}
               />
             </CardContent>
           </Card>

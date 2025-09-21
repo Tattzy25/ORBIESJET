@@ -74,8 +74,8 @@ export default function GridPage() {
       <div className="flex flex-col items-center justify-center gap-4 sm:gap-8 w-full max-w-4xl">
         {/* Top Row - 2 Shaders */}
         <div className="flex flex-row justify-center gap-4 sm:gap-8 w-full">
-          {/* Shader 1 */}
-          <Link to="/shader1">
+          {/* Blue Wave Shader */}
+          <Link to="/BW-Radio-Widget">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -87,7 +87,7 @@ export default function GridPage() {
                 shaderId={1}
               />
               
-              {/* Centered Blur Overlay for Shader 1 */}
+              {/* Centered Blur Overlay for Blue Wave */}
               <div className={getBlurOverlayClass()} />
             </motion.div>
           </Link>

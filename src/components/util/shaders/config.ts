@@ -8,7 +8,7 @@ export interface ShaderConfig {
 export const shaderConfigs: ShaderConfig[] = [
   {
     id: 1,
-    name: "Flowing Waves",
+    name: "Blue Wave",
     color: "#6366f1" // Indigo color
   },
   {

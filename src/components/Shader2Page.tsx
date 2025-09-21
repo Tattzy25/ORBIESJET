@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ShaderCanvas } from "./ShaderCanvas";
-import { SingleShaderEmbedDisplay } from "./SingleShaderEmbedDisplay";
+// import { SingleShaderEmbedDisplay } from "./SingleShaderEmbedDisplay"; // TODO: Fix when working on Shader 2
 import { BlurOverlay } from "./BlurOverlay";
 import { motion } from "framer-motion";
 import "../styles/blur-overlay.css";
@@ -53,8 +53,6 @@ export default function Shader2Page() {
         <BlurOverlay canvasSize={canvasSize} />
       </motion.div>
 
-      {/* Embed Code Display with huge padding */}
-      <SingleShaderEmbedDisplay shaderId={2} />
     </div>
   );
 }

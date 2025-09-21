@@ -1,4 +1,4 @@
-export const flowingWavesShader = `
+export const blueWaveShader = `
 precision mediump float;
 uniform vec2 iResolution;
 uniform float iTime;

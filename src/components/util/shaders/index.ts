@@ -1,5 +1,5 @@
 // Modular shader system - clean imports and exports
-import { flowingWavesShader } from './flowingWaves';
+import { blueWaveShader } from './blueWave';
 import { etherShader } from './ether';
 import { shootingStarsShader } from './shootingStars';
 import { wavyLinesShader } from './wavyLines';
@@ -8,7 +8,7 @@ import { shaderConfigs, type ShaderConfig } from './config';
 
 // Export individual shaders for direct use
 export { 
-  flowingWavesShader,
+  blueWaveShader,
   etherShader, 
   shootingStarsShader,
   wavyLinesShader,
@@ -27,7 +27,7 @@ export interface Shader extends ShaderConfig {
 export const shaders: Shader[] = [
   {
     ...shaderConfigs[0],
-    fragmentShader: flowingWavesShader
+    fragmentShader: blueWaveShader
   },
   {
     ...shaderConfigs[1], 
