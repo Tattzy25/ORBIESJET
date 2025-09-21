@@ -1,156 +1,247 @@
-import { useState, useRef, useEffect } from "react";
-import { Play, Pause, SkipForward, SkipBack, Volume2 } from "lucide-react";
-import "../styles/futuristic-radio.css";
+import React, { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
 
 interface FuturisticRadioPlayerProps {
   canvasSize: number;
 }
 
-export const FuturisticRadioPlayer = ({ canvasSize }: FuturisticRadioPlayerProps) => {
+interface Track {
+  id: number;
+  title: string;
+  artist: string;
+  duration: number;
+}
+
+declare global {
+  interface Window {
+    SC: any;
+  }
+}
+
+const Loader = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
-  const [volume, setVolume] = useState(0.7);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [tracks] = useState<Track[]>([
+    { id: 1, title: "Legendary Tunes", artist: "Digital Hustle Lab", duration: 225 },
+    { id: 2, title: "Epic Vibes", artist: "Digital Hustle Lab", duration: 180 },
+    { id: 3, title: "Future Sounds", artist: "Digital Hustle Lab", duration: 200 },
+  ]);
+  
+  const widgetRef = useRef<any>(null);
 
-  // Demo tracks (using placeholder audio for now - SoundCloud requires special integration)
-  const tracks = [
-    { id: 1, title: "Station Alpha", artist: "ORBIEJET", url: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmvBCAAAP4EAAa0KS4O8fSUAAAAPAACFnoelj82jbwAQAhAAJ4Q9gUt9gwEBAPqABINGfigAQz8AA1aE8zGPOCJTGwMaAAAAYQA1gUJ+CX5AdgAOYAAAAUGFUH4XuAACAGKFLIFKfXWr+QJKghd/vAJJAoAEj8qOAwJMi0WDOHwQgwMCAKUNAQCHkoeCNH3KAwQPAAA4gQOKAQAyIAABAAGJZQULOzGODgACtgUQCQRdOINJfSiAAG+KEX4QAACUBAV9YAApQgQBQYFKfgJ+fgOAB4pHgUl9S3tFgAOFA38BgQeABYxJgQV+XoEOAACA/lIA/kEKgdqkRAIXjKyHJ3xHhCh+CIE7fUl/AoAGBgBhgAKFAwUOAA6DIH5SgICIeX1qgwOKgAKEYn1QhAAEARAABID/gAGE/4BKdwQBgAGGA4J+fgOAA4AAgf8BAQCPAQAkhggBAo6agSh+AAGCeoQcfUR7aoAXigGEAX6FgoFJevGA/H0HAU6AOHwAAA6HT3xHgdaAAIAMgJSACIFBfUl/BYAMgMKB/ntKhgQBABcAgASGA/1EfQOBAAL+jAQBjQmAgHkAAIAPfAJ9gQGOAwAAAcMAAAQAAAAAwgAAAkMDg4B5e0p+ZAAAAACUA8EEoEAAAACHgAONP3v5AHwAAAAA" },
-    { id: 2, title: "Station Beta", artist: "ORBIEJET", url: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmvBCAAAP4EAAa0KS4O8fSUAAAAPAACFnoelj82jbwAQAhAAJ4Q9gUt9gwEBAPqABINGfigAQz8AA1aE8zGPOCJTGwMaAAAAYQA1gUJ+CX5AdgAOYAAAAUGFUH4XuAACAGKFLIFKfXWr+QJKghd/vAJJAoAEj8qOAwJMi0WDOHwQgwMCAKUNAQCHkoeCNH3KAwQPAAA4gQOKAQAyIAABAAGJZQULOzGODgACtgUQCQRdOINJfSiAAG+KEX4QAACUBAV9YAApQgQBQYFKfgJ+fgOAB4pHgUl9S3tFgAOFA38BgQeABYxJgQV+XoEOAACA/lIA/kEKgdqkRAIXjKyHJ3xHhCh+CIE7fUl/AoAGBgBhgAKFAwUOAA6DIH5SgICIeX1qgwOKgAKEYn1QhAAEARAABID/gAGE/4BKdwQBgAGGA4J+fgOAA4AAgf8BAQCPAQAkhggBAo6agSh+AAGCeoQcfUR7aoAXigGEAX6FgoFJevGA/H0HAU6AOHwAAA6HT3xHgdaAAIAMgJSACIFBfUl/BYAMgMKB/ntKhgQBABcAgASGA/1EfQOBAAL+jAQBjQmAgHkAAIAPfAJ9gQGOAwAAAcMAAAQAAAAAwgAAAkMDg4B5e0p+ZAAAAACUA8EEoEAAAACHgAONP3v5AHwAAAAA" },
-    { id: 3, title: "Station Gamma", artist: "ORBIEJET", url: "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmvBCAAAP4EAAa0KS4O8fSUAAAAPAACFnoelj82jbwAQAhAAJ4Q9gUt9gwEBAPqABINGfigAQz8AA1aE8zGPOCJTGwMaAAAAYQA1gUJ+CX5AdgAOYAAAAUGFUH4XuAACAGKFLIFKfXWr+QJKghd/vAJJAoAEj8qOAwJMi0WDOHwQgwMCAKUNAQCHkoeCNH3KAwQPAAA4gQOKAQAyIAABAAGJZQULOzGODgACtgUQCQRdOINJfSiAAG+KEX4QAACUBAV9YAApQgQBQYFKfgJ+fgOAB4pHgUl9S3tFgAOFA38BgQeABYxJgQV+XoEOAACA/lIA/kEKgdqkRAIXjKyHJ3xHhCh+CIE7fUl/AoAGBgBhgAKFAwUOAA6DIH5SgICIeX1qgwOKgAKEYn1QhAAEARAABID/gAGE/4BKdwQBgAGGA4J+fgOAA4AAgf8BAQCPAQAkhggBAo6agSh+AAGCeoQcfUR7aoAXigGEAX6FgoFJevGA/H0HAU6AOHwAAA6HT3xHgdaAAIAMgJSACIFBfUl/BYAMgMKB/ntKhgQBABcAgASGA/1EfQOBAAL+jAQBjQmAgHkAAIAPfAJ9gQGOAwAAAcMAAAQAAAAAwgAAAkMDg4B5e0p+ZAAAAACUA8EEoEAAAACHgAONP3v5AHwAAAAA" },
-  ];
+  // Load SoundCloud API for backend audio control only
+  useEffect(() => {
+    const loadSoundCloud = () => {
+      const script = document.createElement('script');
+      script.src = 'https://w.soundcloud.com/player/api.js';
+      script.onload = () => {
+        // Create hidden iframe for audio control
+        const iframe = document.createElement('iframe');
+        iframe.width = '0';
+        iframe.height = '0';
+        iframe.style.display = 'none';
+        iframe.src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1964027796&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false';
+        document.body.appendChild(iframe);
+        
+        // Initialize widget for backend control
+        if (window.SC) {
+          widgetRef.current = window.SC.Widget(iframe);
+        }
+      };
+      document.head.appendChild(script);
+    };
 
-  // Helper function to get blur overlay size class with futuristic styling
-  const getPlayerClass = () => {
-    let baseSize = "";
-    if (canvasSize <= 180) baseSize = "w-[120px] h-[120px]";
-    else if (canvasSize <= 250) baseSize = "w-[165px] h-[165px]";
-    else if (canvasSize <= 350) baseSize = "w-[198px] h-[198px]";
-    else if (canvasSize <= 450) baseSize = "w-[264px] h-[264px]";
-    else baseSize = "w-[330px] h-[330px]";
-    
-    return `${baseSize} futuristic-radio-player`;
-  };
+    loadSoundCloud();
+  }, []);
 
   const togglePlay = () => {
-    if (audioRef.current) {
+    setIsPlaying(!isPlaying);
+    if (widgetRef.current) {
       if (isPlaying) {
-        audioRef.current.pause();
+        widgetRef.current.pause();
       } else {
-        audioRef.current.play();
+        widgetRef.current.play();
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
   const nextTrack = () => {
     setCurrentTrack((prev) => (prev + 1) % tracks.length);
+    if (widgetRef.current) {
+      widgetRef.current.next();
+    }
   };
 
   const prevTrack = () => {
     setCurrentTrack((prev) => (prev - 1 + tracks.length) % tracks.length);
-  };
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
+    if (widgetRef.current) {
+      widgetRef.current.prev();
     }
   };
 
-  // Update audio time
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const updateTime = () => {
-      setCurrentTime(audio.currentTime);
-      setDuration(audio.duration || 0);
-    };
-
-    audio.addEventListener('timeupdate', updateTime);
-    audio.addEventListener('loadedmetadata', updateTime);
-
-    return () => {
-      audio.removeEventListener('timeupdate', updateTime);
-      audio.removeEventListener('loadedmetadata', updateTime);
-    };
-  }, []);
-
-  // Format time for display
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const stopTrack = () => {
+    setIsPlaying(false);
+    if (widgetRef.current) {
+      widgetRef.current.pause();
+      widgetRef.current.seekTo(0);
+    }
   };
 
-  const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const currentTrackData = tracks[currentTrack];
 
   return (
-    <div className={getPlayerClass()}>
-      {/* Hidden audio element */}
-      <audio 
-        ref={audioRef}
-        src={tracks[currentTrack].url}
-      />
-      
-      {/* Station Display */}
-      <div className="station-display">
-        <div className="station-text">
-          <div className="station-title">{tracks[currentTrack].title}</div>
-          <div className="station-artist">{tracks[currentTrack].artist}</div>
-        </div>
-        <div className="station-number">
-          {String(currentTrack + 1).padStart(2, '0')}
-        </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="progress-container">
-        <div className="progress-bar">
-          <div 
-            className="progress-fill"
-            style={{ width: `${progressPercentage}%` }}
-          />
-        </div>
-        <div className="time-display">
-          <span>{formatTime(currentTime)}</span>
-          <span>{formatTime(duration)}</span>
-        </div>
-      </div>
-
-      {/* Control Buttons */}
-      <div className="control-buttons">
-        <button onClick={prevTrack} className="control-btn" title="Previous Track" aria-label="Previous Track">
-          <SkipBack size={16} />
-        </button>
+    <StyledWrapper>
+      <div className="loader">
+        <div className="loader_cube loader_cube--color" />
+        <div className="loader_cube loader_cube--glowing" />
         
-        <button onClick={togglePlay} className="control-btn play-btn" title={isPlaying ? "Pause" : "Play"} aria-label={isPlaying ? "Pause" : "Play"}>
-          {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-        </button>
+        {/* Track Info */}
+        <div className="track-info">
+          <h3>{currentTrackData.title}</h3>
+          <p>{currentTrackData.artist}</p>
+        </div>
         
-        <button onClick={nextTrack} className="control-btn" title="Next Track" aria-label="Next Track">
-          <SkipForward size={16} />
-        </button>
+        {/* Control Buttons */}
+        <div className="controls">
+          <button onClick={prevTrack} className="control-btn" title="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polygon points="19 20 9 12 19 4 19 20" />
+              <line x1="5" y1="19" x2="5" y2="5" />
+            </svg>
+          </button>
+          
+          <button onClick={togglePlay} className="control-btn play-btn" title={isPlaying ? "Pause" : "Play"}>
+            {isPlaying ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="6" y="4" width="4" height="16" />
+                <rect x="14" y="4" width="4" height="16" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg>
+            )}
+          </button>
+          
+          <button onClick={stopTrack} className="control-btn" title="Stop">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="6" y="6" width="12" height="12" />
+            </svg>
+          </button>
+          
+          <button onClick={nextTrack} className="control-btn" title="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polygon points="5 4 15 12 5 20 5 4" />
+              <line x1="19" y1="5" x2="19" y2="19" />
+            </svg>
+          </button>
+        </div>
       </div>
-
-      {/* Volume Control */}
-      <div className="volume-control">
-        <Volume2 size={14} className="volume-icon" />
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={volume}
-          onChange={handleVolumeChange}
-          className="volume-slider"
-          title="Volume Control"
-          aria-label="Volume Control"
-        />
-      </div>
-    </div>
+    </StyledWrapper>
   );
+};
+
+const StyledWrapper = styled.div`
+  .loader {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .loader_cube {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    top: 0;
+    left: 0;
+  }
+
+  .loader_cube--glowing {
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .loader_cube--color {
+    z-index: 1;
+    filter: blur(2px);
+    background: linear-gradient(135deg, #1afbf0, #da00ff);
+    animation: loadtwo 2.5s ease-in-out infinite;
+  }
+
+  .track-info {
+    z-index: 3;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 10px rgba(26, 251, 240, 0.5);
+    margin-top: 20px;
+  }
+
+  .track-info h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .track-info p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  .controls {
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(26, 251, 240, 0.8);
+    box-shadow: 0 0 15px rgba(26, 251, 240, 0.3);
+    transform: scale(1.1);
+  }
+
+  .play-btn {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #1afbf0, #da00ff);
+    border: none;
+  }
+
+  .play-btn:hover {
+    background: linear-gradient(135deg, #da00ff, #1afbf0);
+    box-shadow: 0 0 20px rgba(26, 251, 240, 0.5);
+  }
+
+  @keyframes loadtwo {
+    50% {
+      transform: rotate(-80deg);
+    }
+  }
+`;
+
+export const FuturisticRadioPlayer = ({ canvasSize }: FuturisticRadioPlayerProps) => {
+  return <Loader />;
 };
