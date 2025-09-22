@@ -49,8 +49,8 @@ export const BWEmbed = ({ shaderId }: BWEmbedProps) => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 mt-[100px]">
-      <h2 className="text-white text-2xl font-bold mb-8 text-center">Embed Code for Shader {shaderId}</h2>
+    <div className="w-full max-w-4xl mx-auto px-4 mt-[120px]">
+      <h2 className="text-white text-2xl font-bold mb-8 text-center">Embed Code for Blue Wave</h2>
       <div className="grid grid-cols-1 gap-6">
         {embedCodes.map((embed, index) => (
           <Card key={index} className="bg-gray-900/50 border-gray-700 backdrop-blur-sm">
